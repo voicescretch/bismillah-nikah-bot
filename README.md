@@ -38,10 +38,10 @@ Bot Telegram pintar untuk mencatat dan mengelola tabungan menikah bersama pasang
 ## 🛠️ Tech Stack & Dependencies
 
 - **Runtime**: Node.js (ES Modules `"type": "module"`)
-- **Bot Framework**: [grammY](https://grammy.dev/) (`grammy`, `@grammyjs/conversations`)
+- **Bot Framework**: [grammY](https://grammy.dev/)
 - **Database & ORM**: PostgreSQL & [Prisma ORM](https://www.prisma.io/)
 - **Excel Generator**: [ExcelJS](https://github.com/exceljs/exceljs)
-- **Utilities**: `dotenv`, `bcryptjs`, `nodemailer`
+- **Utilities**: `dotenv`
 
 ---
 

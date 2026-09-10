@@ -1,4 +1,3 @@
-import http from "http"; // 1. Modul HTTP bawaan Node.js
 import { Bot, session } from "grammy";
 import dotenv from "dotenv";
 import { prisma } from "./lib/prisma.js";
@@ -29,17 +28,6 @@ import {
 } from "./commands/savings.js";
 
 dotenv.config();
-
-// 2. Server HTTP sederhana untuk Render Web Service
-const PORT = process.env.PORT || 3000;
-http
-  .createServer((req, res) => {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Bot Telegram Tabungan Bersama sedang aktif!");
-  })
-  .listen(PORT, () => {
-    console.log(`🌐 Server HTTP aktif di port ${PORT}`);
-  });
 
 if (!process.env.BOT_TOKEN) {
   console.error("❌ ERROR: BOT_TOKEN belum diatur di file .env");

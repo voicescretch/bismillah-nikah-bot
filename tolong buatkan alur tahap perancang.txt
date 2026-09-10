@@ -1,0 +1,18 @@
+tolong buatkan alur tahap perancangan chat bot telegram
+saya ingin membuat chat bot telegram untuk saya dan pacar saya menabung yang menggunakan command /, chat bot menggunakan coding
+daftar command:
+/daftar; chatbot akan mengembalikan form. user disuruh mengisi nama lengkap, email, kata sandi. username user dibuat otomatis di dalam backend dengan kombinasi unik.
+/masuk -u <username> -p <kata sandi>; untuk autentikasi dan keamanan. bisa juga username diganti menggunakan -e <email>
+/lupasandi; chatbot akan mengembalikan form email. user disuruh mengisi email yang sudah terdaftar untuk dikirimkan password baru yang dikirim lewat email.
+/ubahsandi; untuk mengganti password ketik chatbot akan menyuruh user memasukkan password lama dan password baru.
+/menabung <nominal>; untuk menabung. simpan di table Riwayat tabungan user_id dan nominal nya.
+/penarikan <nominal>; untuk menarik tabungan. simpan di table Riwayat tabungan user_id dan nominal nya.
+/hubungkan; menampilkan link untuk dibagikan dengan teman yang ingin bergabung ke tabungan. nanti tabungan bisa bergabung dan saldo teman yang ada saat itu akan di hitung Bersama kedalam tabungan. buat data hubungan pada table hubungan. didalam pesan balasan bot yang mengirim link, terdapat pesan peringatan untuk user agar tidak membagikannya pada orang yang tidak diinginkan. link hanya berlaku 5 menit sebelum kadaluarsa.
+/batalkanhubungan <username>; memutuskan hubungan tabungan teman yang terhubung dengan tabungan, saldo tidak Kembali ke <username> karena sudah masuk ke dalam pemilik tabungan, tapi sebelum itu user disuruh mengkonfirmasi lagi apakah user yakin. jika username salah atau tidak ditemukan tampilkan message.
+/keluarhubungan; keluar dari hubungan yang sekarang, tapi sebelum itu user disuruh mengkonfirmasi lagi apakah user yakin
+/daftarhubungan; untuk menampilkan daftar teman yang terhubung.
+/riwayat; untuk menampilkan Riwayat tabungan semua user terhubung dalam bentuk file excel. tampilkan juga pengeluaran nya. tampilkan juga total pengeluaran, total pemasukan dan total tabungan yang didapat.
+/riwayat <username>; membuat file excel tetapi hanya untuk username terhubung yang disebut. bisa memanggil diri sendiri dengan mengetik /riwayat pribadi
+/total; menampilkan total tabungan dari masing-masing pengguna dan total keseluruhan.
+/ringkasan; tampilkan ringkasan dari masing-masing user mulai dari pemasukan, pengeluaran dan total tabungan.
+/keluar; untuk logout dari akun saat ini, tapi user harus konfirmasi ulang.

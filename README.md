@@ -35,98 +35,34 @@ Bot Telegram pintar untuk mencatat dan mengelola tabungan menikah bersama pasang
 
 ---
 
-## 🛠️ Tech Stack & Dependencies
+## 🚀 Panduan Deploy Gratis 24/7 di Vercel (Serverless Webhook)
 
-- **Runtime**: Node.js (ES Modules `"type": "module"`)
-- **Bot Framework**: [grammY](https://grammy.dev/)
-- **Database & ORM**: PostgreSQL & [Prisma ORM](https://www.prisma.io/)
-- **Excel Generator**: [ExcelJS](https://github.com/exceljs/exceljs)
-- **Utilities**: `dotenv`
+### Mengapa Vercel Memerlukan Setup Khusus?
+Vercel menggunakan **Serverless Functions** (bukan server 24 jam nonstop yang bisa menjalankan `bot.start()` / Long Polling). Oleh karena itu, bot di Vercel harus menggunakan **Telegram Webhook** (`api/webhook.js`).
 
----
-
-## 📁 Struktur Folder Proyek
-
-```
-bismillahnikah/
-├── .env                              # Environment Variables (Bot Token & DB URL)
-├── package.json                      # NPM Dependencies & Scripts
-├── prisma/
-│   └── schema.prisma                 # Schema Database (User, SavingsGroup, SavingsHistory, InviteLink)
-└── src/
-    ├── index.js                      # Main entry point & Bot router
-    ├── commands/
-    │   ├── auth.js                   # Handlers: /start, /profil, /help
-    │   ├── group.js                  # Handlers: /hubungkan, /terima, /batalkanhubungan, /keluarhubungan, /daftarhubungan
-    │   └── savings.js                # Handlers: /menabung, /penarikan, /riwayat, /total, /ringkasan
-    ├── middlewares/
-    │   └── auth.js                   # Middleware Telegram Account Auto-Sync
-    ├── lib/
-    │   └── prisma.js                 # PrismaClient Instance
-    └── utils/
-        ├── excel.js                  # Generator laporan Excel (.xlsx) dengan ExcelJS
-        └── helpers.js                # Helper format Rupiah, tanggal, & parsing nominal
-```
+### Langkah Deploy ke Vercel:
+1. **Push kode ini ke GitHub**.
+2. Buka **[Vercel.com](https://vercel.com)** -> Import repository dari GitHub.
+3. Tambahkan **Environment Variables** di dashboard Vercel:
+   - `BOT_TOKEN` = `TOKEN_BOT_TELEGRAM_DARI_BOTFATHER`
+   - `DATABASE_URL` = `URL_DATABASE_POSTGRESQL_SUPABASE`
+4. Klik **Deploy**.
+5. Setelah sukses dipublikasikan, salin domain Vercel Anda (contoh: `https://bismillah-nikah-bot.vercel.app`).
+6. **Aktifkan Webhook Telegram**: Buka browser Anda dan akses URL berikut (ganti `<TOKEN_BOT>` dan `<DOMAIN_VERCEL>`):
+   ```
+   https://api.telegram.org/bot<TOKEN_BOT>/setWebhook?url=https://<DOMAIN_VERCEL>/api/webhook
+   ```
+7. Jika balasan di browser `"ok": true, "result": true`, maka bot Telegram Anda di Vercel sudah aktif 100%!
 
 ---
 
 ## 💻 Panduan Instalasi Lokal
 
-### 1. Prasyarat
-- Node.js versi 18 atau lebih baru.
-- Database PostgreSQL yang aktif (lokal atau cloud).
-
-### 2. Langkah-Langkah
-1. **Clone repository**:
-   ```bash
-   git clone https://github.com/USERNAME_KAMU/bismillah-nikah-bot.git
-   cd bismillah-nikah-bot
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Konfigurasi file `.env`**:
-   Buat atau sesuaikan file `.env` di root direktori:
-   ```env
-   BOT_TOKEN="BOT_TOKEN_DARI_BOTFATHER"
-   DATABASE_URL="postgresql://postgres:password@localhost:5432/db_tabungan?schema=public"
-   ```
-
-4. **Migrasi Database Schema**:
-   ```bash
-   npx prisma db push
-   ```
-
-5. **Jalankan Bot**:
-   ```bash
-   # Mode Development (auto-reload via Nodemon)
-   npm run dev
-
-   # Mode Production
-   npm start
-   ```
-
----
-
-## 🚀 Panduan Deploy Gratis 24/7 di Koyeb & Supabase
-
-### 1. Database Gratis di Supabase (Always Free)
-1. Buat akun di [Supabase.com](https://supabase.com).
-2. Buat proyek baru dan dapatkan **Connection String PostgreSQL**.
-3. Pasang URL database Supabase tersebut ke `DATABASE_URL` di `.env`.
-
-### 2. Web Hosting Bot Gratis di Koyeb.com
-1. Push kode Anda ke repository GitHub.
-2. Buat akun di [Koyeb.com](https://app.koyeb.com) dan hubungkan akun GitHub Anda.
-3. Buat **New App / Service** -> Pilih repository GitHub Anda.
-4. Masukkan **Environment Variables**:
-   - `BOT_TOKEN`
-   - `DATABASE_URL`
-5. Koyeb akan secara otomatis menjalankan `npm run build` (`npx prisma generate`) dan `npm start`.
-6. Bot Telegram Anda kini online 24 jam nonstop secara gratis!
+```bash
+npm install
+npx prisma db push
+npm run dev
+```
 
 ---
 
